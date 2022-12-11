@@ -95,7 +95,7 @@ export default function Album({ id, url, title, content }) {
           {title} | {content.length}
         </h3>
         <ul className="Content">
-          {content.slice(0, 3).map((element) => (
+          {content.slice(0, 4).map((element) => (
             <li onClick={onClick}>
               {element.title} - {element.vocal}
             </li>
