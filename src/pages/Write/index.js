@@ -22,8 +22,9 @@ const WriteBlock = styled.div`
       width: 100%;
       height: 36px;
     }
-    .ContentInputWrapper {
-      height: 68px;
+    .ContentInputForm {
+      position: relative;
+      height: fit-content;
       width: 100%;
       display: flex;
       justify-content: end;
@@ -40,10 +41,11 @@ const WriteBlock = styled.div`
         width: 100%;
       }
       .AddBtnWrapper {
+        position: absolute;
+        bottom: -40px;
         // 개선
         width: 44px;
         height: 36px;
-        margin-top: 4px;
         button {
           font-size: 12px;
         }
@@ -203,7 +205,7 @@ export default function Write() {
           setImageURL={setImageURL}
           isUpload={isUpload}
         />
-        <div className="ContentInputWrapper">
+        <form className="ContentInputForm">
           <div className="TitleInput">
             <Input
               name="currentTitle"
@@ -231,24 +233,27 @@ export default function Write() {
           <div className="AddBtnWrapper">
             <Button onClick={addContent}>+</Button>
           </div>
-        </div>
+        </form>
 
         <div className="ContentListWrapper">
           {input.content &&
-            input.content.map((element) => {
-              return (
-                <ContentWrapper>
-                  <li>
-                    <a href={element.url}>
-                      {element.title} - {element.vocal}
-                    </a>
-                  </li>
-                  <button id={element.url} onClick={delContent}>
-                    x
-                  </button>
-                </ContentWrapper>
-              );
-            })}
+            input.content
+              .slice(0)
+              .reverse()
+              .map((element) => {
+                return (
+                  <ContentWrapper>
+                    <li>
+                      <a href={element.url}>
+                        {element.title} - {element.vocal}
+                      </a>
+                    </li>
+                    <button id={element.url} onClick={delContent}>
+                      x
+                    </button>
+                  </ContentWrapper>
+                );
+              })}
         </div>
         <div className="EnterBtnWrapper">
           <Button onClick={onSubmit}>Enter</Button>

@@ -36,9 +36,6 @@ export default function Home() {
 
   return (
     <HomeBlock>
-      <div className="BtnWrapper">
-        <Button onClick={onWrite}>Write</Button>
-      </div>
       <div className="AlbumWrapper">
         {documents &&
           documents.map((doc) => {
@@ -52,6 +49,9 @@ export default function Home() {
               />
             );
           })}
+      </div>
+      <div className="BtnWrapper">
+        <Button onClick={onWrite}>Write</Button>
       </div>
     </HomeBlock>
   );
