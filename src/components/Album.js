@@ -25,10 +25,12 @@ const AlbumBlock = styled.div`
   .TextArea {
     padding: 4px 4px 4px 10px;
     box-sizing: border-box;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     .Title {
-      width: fit-content;
       font-size: 15px;
-      font-weight: bold;
       cursor: pointer;
       margin: 6px 0;
     }
@@ -37,6 +39,9 @@ const AlbumBlock = styled.div`
       font-size: 13px;
       color: #bfbfbf;
       li {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
         cursor: pointer;
         margin: 2px 0px;
       }
@@ -86,11 +91,11 @@ export default function Album({ id, url, title, content }) {
         <img alt="IMG" src={url}></img>
       </div>
       <div className="TextArea">
-        <p className="Title" onClick={onClick}>
-          {title}
-        </p>
+        <h3 className="Title" onClick={onClick}>
+          {title} | {content.length}
+        </h3>
         <ul className="Content">
-          {content.map((element) => (
+          {content.slice(0, 3).map((element) => (
             <li onClick={onClick}>
               {element.title} - {element.vocal}
             </li>
