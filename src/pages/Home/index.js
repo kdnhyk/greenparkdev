@@ -19,7 +19,7 @@ const HomeBlock = styled.div`
     gap: 8px;
   }
   .BtnWrapper {
-    width: 80px;
+    width: 72px;
     height: 30px;
   }
 `;
@@ -36,6 +36,9 @@ export default function Home() {
 
   return (
     <HomeBlock>
+      <div className="BtnWrapper">
+        <Button onClick={onWrite}>Write</Button>
+      </div>
       <div className="AlbumWrapper">
         {documents &&
           documents.map((doc) => {
@@ -49,12 +52,6 @@ export default function Home() {
               />
             );
           })}
-      </div>
-
-      <div className="BtnWrapper">
-        <Button backgroundColor="#1E1E1E" onClick={onWrite}>
-          Write
-        </Button>
       </div>
     </HomeBlock>
   );

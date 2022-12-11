@@ -16,7 +16,10 @@ export const useCollection = (transaction, id) => {
   useEffect(() => {
     if (!id) {
       const unsubscribe = onSnapshot(
-        query(collection(appFireStore, transaction), orderBy("createdTime")),
+        query(
+          collection(appFireStore, transaction),
+          orderBy("createdTime", "desc")
+        ),
         (snapshot) => {
           let result = [];
           snapshot.docs.forEach((doc) => {

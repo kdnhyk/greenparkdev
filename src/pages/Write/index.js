@@ -10,12 +10,11 @@ import { useCollection } from "../../hooks/useCollection";
 const WriteBlock = styled.div`
   width: 100%;
   height: 100%;
-
   padding: 20px 20px;
 
   .WriteBlockInner {
     padding: 10px 10px;
-    background: #1e1e1e;
+    background: rgba(20, 20, 20, 0.5);
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -24,7 +23,7 @@ const WriteBlock = styled.div`
       height: 36px;
     }
     .ContentInputWrapper {
-      height: 110px;
+      height: 68px;
       width: 100%;
       display: flex;
       justify-content: end;
@@ -43,7 +42,8 @@ const WriteBlock = styled.div`
       .AddBtnWrapper {
         // 개선
         width: 44px;
-        height: 32px;
+        height: 36px;
+        margin-top: 4px;
         button {
           font-size: 12px;
         }
@@ -51,7 +51,7 @@ const WriteBlock = styled.div`
     }
 
     .ContentListWrapper {
-      height: 200px;
+      height: 300px;
       overflow-y: auto;
       // scroll del
     }

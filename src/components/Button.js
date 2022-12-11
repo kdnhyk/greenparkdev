@@ -10,6 +10,7 @@ const ButtonBlock = styled.button`
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 12px;
 `;
 
 export default function Button({

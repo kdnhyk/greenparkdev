@@ -8,14 +8,10 @@ const MenuBlock = styled.div`
 
   position: absolute;
   top: 26px;
-  right: 0px;
-  background-color: #bfbfbf;
-  color: black;
-
-  hr {
-    width: 42px;
-    margin: 0;
-  }
+  right: 1px;
+  background-color: black;
+  color: #d9d9d9;
+  border: 0.5px solid #d9d9d9;
   p {
     height: 50%;
     display: flex;
@@ -23,6 +19,9 @@ const MenuBlock = styled.div`
     align-items: center;
     font-size: 12px;
     margin: 0;
+
+    border-top: 1px solid #d9d9d9;
+
     cursor: pointer;
   }
 `;
@@ -31,7 +30,6 @@ export default function Menu({ editAlbum, deleteAlbum }) {
   return (
     <MenuBlock className="Menu">
       <p onClick={editAlbum}>Edit</p>
-      <hr />
       <p onClick={deleteAlbum}>Del</p>
     </MenuBlock>
   );
