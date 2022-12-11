@@ -38,7 +38,11 @@ const ImgWrapper = styled.div`
   }
 `;
 
-export default function ImgageUploader({ defaultImageUrl, setImageURL }) {
+export default function ImgageUploader({
+  defaultImageUrl,
+  setImageURL,
+  isUpload,
+}) {
   const inputRef = useRef(null);
   const { upload, deleteImage } = useStorage();
 
@@ -50,32 +54,42 @@ export default function ImgageUploader({ defaultImageUrl, setImageURL }) {
       console.log("default Image Load");
       setAttachment(defaultImageUrl);
     }
-  }, []);
+  }, [defaultImageUrl]);
 
-  const onUploadImage = useCallback((event) => {
-    const { files, value } = event.target;
-    console.log(files);
-    if (!files) {
-      return;
-    }
-    console.log(files[0].name);
-    const theFile = files[0];
+  // useEffect(() => {
+  //   if (isUpload) {
+  //     console.log("Image Upload!: " + file);
 
-    if (theFile.size > 1 * 1024 * 1024) {
-      alert("이미지 파일 용량이 너무 큽니다.");
-    }
+  //   }
+  // }, [attachment, deleteImage, file, isUpload, setImageURL, upload]);
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result;
-      setAttachment(result);
-    };
-    reader.readAsDataURL(theFile);
+  const onUploadImage = useCallback(
+    (event) => {
+      const { files, value } = event.target;
+      console.log(files);
+      if (!files) {
+        return;
+      }
+      console.log(files[0].name);
+      const theFile = files[0];
 
-    // 개선
-    setFile(theFile);
-    upload(theFile, setImageURL);
-  }, []);
+      if (theFile.size > 1 * 1024 * 1024) {
+        alert("이미지 파일 용량이 너무 큽니다.");
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result;
+        setAttachment(result);
+      };
+      reader.readAsDataURL(theFile);
+
+      // 개선
+      setFile(theFile);
+      upload(theFile, setImageURL);
+    },
+    [setImageURL, upload]
+  );
 
   const onClearAttachment = () => {
     deleteImage(attachment);

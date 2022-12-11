@@ -105,6 +105,7 @@ export default function Write() {
 
   const { id } = useParams();
   const { documents } = useCollection("Board", id);
+  const [isUpload, setIsUpload] = useState(false);
 
   useEffect(() => {
     console.log(documents);
@@ -175,7 +176,6 @@ export default function Write() {
     // input.content.map((element) => {
     //   ListStorage.addDocument({ text: element.text, url: element.url });
     // });
-
     nav("/");
   };
 
@@ -198,7 +198,11 @@ export default function Write() {
           />
         </div>
 
-        <ImgageUploader defaultImageUrl={input.url} setImageURL={setImageURL} />
+        <ImgageUploader
+          defaultImageUrl={input.url}
+          setImageURL={setImageURL}
+          isUpload={isUpload}
+        />
         <div className="ContentInputWrapper">
           <div className="TitleInput">
             <Input
