@@ -38,11 +38,7 @@ const ImgWrapper = styled.div`
   }
 `;
 
-export default function ImgageUploader({
-  defaultImageUrl,
-  setImageURL,
-  isUpload,
-}) {
+export default function ImgageUploader({ defaultImageUrl, setImageURL }) {
   const inputRef = useRef(null);
   const { upload, deleteImage } = useStorage();
 

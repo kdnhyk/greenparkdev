@@ -46,7 +46,7 @@ export default function Home() {
                 url={doc.url}
                 title={doc.title}
                 content={doc.content}
-                isViewd={doc.isViewd}
+                isVisible={doc.isVisible}
               />
             );
           })}

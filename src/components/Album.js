@@ -66,7 +66,7 @@ const AlbumBlock = styled.div`
   }
 `;
 
-export default function Album({ id, url, title, content, isViewd }) {
+export default function Album({ id, url, title, content, isVisible }) {
   const [isMenu, setIsMenu] = useState(false);
 
   const nav = useNavigate();
@@ -86,12 +86,12 @@ export default function Album({ id, url, title, content, isViewd }) {
   const { addDocument, deleteDocument } = useFirestore("Board");
   const { deleteImage } = useStorage();
   const deleteAlbum = () => {
-    if (isViewd) {
+    if (isVisible) {
       addDocument({
         title: title,
-        isViewd: false,
+        isVisible: false,
       });
-    } else if (!isViewd) {
+    } else if (!isVisible) {
       deleteDocument(id);
       deleteImage(url);
     }
@@ -100,7 +100,7 @@ export default function Album({ id, url, title, content, isViewd }) {
   const reViewd = () => {
     addDocument({
       title: title,
-      isViewd: true,
+      isVisible: true,
     });
   };
 
@@ -108,8 +108,9 @@ export default function Album({ id, url, title, content, isViewd }) {
     <AlbumBlock>
       <div className="ImageWrapper" onClick={onClick}>
         <img alt="IMG" src={url}></img>
-        {!isViewd && (
+        {!isVisible && (
           <svg
+            onClick={reViewd}
             width="33"
             height="27"
             viewBox="0 0 33 27"
@@ -133,7 +134,7 @@ export default function Album({ id, url, title, content, isViewd }) {
             .reverse()
             .slice(0, 4)
             .map((element) => (
-              <li onClick={onClick}>
+              <li key={element.url} onClick={onClick}>
                 {element.title} - {element.vocal}
               </li>
             ))}
