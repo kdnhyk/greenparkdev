@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { appFireStore } from "../firebase";
 
 export const useCollection = (transaction, id) => {
+  console.log("FireStore Access");
   const [documents, setDocuments] = useState(null);
 
   useEffect(() => {
@@ -40,7 +41,6 @@ export const useCollection = (transaction, id) => {
         limit(1)
       );
 
-      console.log("FireStore Access");
       let result = [];
       getDocs(q).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {

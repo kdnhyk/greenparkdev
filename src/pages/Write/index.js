@@ -174,7 +174,12 @@ export default function Write() {
   const nav = useNavigate();
 
   const onSubmit = () => {
-    addDocument({ title: input.title, url: input.url, content: input.content });
+    addDocument({
+      title: input.title,
+      url: input.url,
+      content: input.content,
+      isViewd: true,
+    });
     // input.content.map((element) => {
     //   ListStorage.addDocument({ text: element.text, url: element.url });
     // });
